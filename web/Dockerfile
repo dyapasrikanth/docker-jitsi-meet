@@ -4,6 +4,7 @@ FROM ${JITSI_REPO}/base
 ADD https://dl.eff.org/certbot-auto /usr/local/bin/
 
 COPY rootfs/ /
+ADD evacloud_landing/evacloud_landing_build.tar.xz /usr/share/nginx/evacloud_landing/
 
 RUN \
 	apt-dpkg-wrap apt-get update && \
@@ -13,6 +14,7 @@ RUN \
 	mv /usr/share/jitsi-meet/interface_config.js /defaults && \
 	apt-cleanup && \
 	rm -f /etc/nginx/conf.d/default.conf && \
+	rm -r /*.deb && \
 	rm -rf /tmp/pkg /var/cache/apt
 
 RUN \

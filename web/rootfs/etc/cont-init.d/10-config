@@ -18,6 +18,10 @@ if [[ $DISABLE_HTTPS -ne 1 ]]; then
                   --standalone \
                   --preferred-challenges http \
                   -d $LETSENCRYPT_DOMAIN \
+                  -d www.evacloud.io \
+                  -d evacloud.io \
+                  -d www.jashin.in \
+                  -d jashin.in \
                   --agree-tos \
                   --email $LETSENCRYPT_EMAIL ; then
 
@@ -62,6 +66,14 @@ fi
 
 if [[ ! -f /config/nginx/ssl.conf ]]; then
     tpl /defaults/ssl.conf > /config/nginx/ssl.conf
+fi
+
+if [[ ! -f /config/nginx/evacloud.io.conf ]]; then
+    tpl /defaults/evacloud.io.conf > /config/nginx/evacloud.io.conf
+fi
+
+if [[ ! -f /config/nginx/jashin.in.conf ]]; then
+    tpl /defaults/jashin.in.conf > /config/nginx/jashin.in.conf
 fi
 
 if [[ ! -f /config/nginx/site-confs/default ]]; then
