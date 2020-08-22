@@ -19,6 +19,8 @@ RUN \
 
 FROM ${JITSI_REPO}/base
 
+COPY ./jitsi-meet-prosody*.deb /
+
 ADD https://prosody.im/files/prosody-debian-packages.key /tmp/prosody.key
 
 RUN \
